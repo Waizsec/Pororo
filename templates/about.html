@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pororo - About Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/fav.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-full h-screen flex items-center justify-center flex-col show-page">
+        <p class='text-sm'>About</p>
+        <img src="{{ url_for('static', filename='img/Logo.svg') }}" class="w-40 -mt-2 mb-2">
+        <p class='text-sm w-4/5 text-center'>
+            Tukeraja is at the forefront of financial technology, reshaping currency exchange with our innovative platform. Using advanced algorithms, we deliver precise predictions and valuable insights into currency fluctuations, enabling investors, businesses, and travelers to make informed decisions with confidence.
+        </p>
+        <p class='text-md my-2 font-semibold'>Our Team</p>
+        <div class="w-full flex justify-between px-96">
+            <div class="flex flex-col justify-between items-center">
+                <div class='flex justify-center items-center flex-col text-lg'>
+                    <img src="{{ url_for('static', filename='img/Kelompok/Diaz.jpeg') }}" class="w-36 h-36 rounded-full mb-2" alt="Dot" />
+                    <h2 class="text-center text-sm">
+                        <span>Diaz Arvinda Ardian</span><br />
+                        <span class='text-gradient'>162112133009</span>
+                    </h2>
+                </div>
+                <div class='flex justify-center items-center flex-col text-lg mt-4'>
+                    <img src="{{ url_for('static', filename='img/Kelompok/Ripai.jpg') }}" class="w-36 h-36 rounded-full mb-2" alt="Dot" />
+                    <h2 class="text-center text-sm">
+                        <span>Raden Bagus Rifa’i K</span><br />
+                        <span class='text-gradient'>162112133047</span>
+                    </h2>
+                </div>
+            </div>
+            <div class="flex justify-between">
+                <div class='flex justify-center items-center flex-col text-lg'>
+                    <img src="{{ url_for('static', filename='img/Kelompok/Gede.jpg') }}" class="w-36 h-36 rounded-full mb-2" alt="Dot" />
+                    <h2 class="text-center text-sm">
+                        <span>Gede Nayaka Baswara</span><br />
+                        <span class='text-gradient'>162112133065</span>
+                    </h2>
+                </div>
+            </div>
+            <div class="flex flex-col justify-between items-center ">
+                <div class='flex justify-center items-center flex-col text-lg'>
+                    <img src="{{ url_for('static', filename='img/Kelompok/Afif.jpeg') }}" class="w-36 h-36 rounded-full mb-2" alt="Dot" />
+                    <h2 class="text-center text-sm">
+                        <span>Afif Ilham Halik</span><br />
+                        <span class='text-gradient'>162112133094</span>
+                    </h2>
+                </div>
+                <div class='flex justify-center items-center flex-col text-lg mt-4'>
+                    <img src="{{ url_for('static', filename='img/Kelompok/Wisnu.png') }}" class="w-36 h-36 rounded-full mb-2" alt="Dot" />
+                    <h2 class="text-center text-sm">
+                        <span>I Ketut Andika Wisnu D</span><br />
+                        <span class='text-gradient'>162112133115</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <a href="/" class='mt-20 font-semibold flex items-center'>
+            <img src="{{ url_for('static', filename='img/arrowRight.png') }}" class='w-[1.5rem] mt-[0.1rem] mr-4 animationLeft' alt="Arrow Right" /><span>Back To Main Page</span>
+        </a>
+    </div>
+</body>
+</html>

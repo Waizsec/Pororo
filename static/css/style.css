@@ -3,3 +3,19 @@
 *{
     font-family: "Inter", sans-serif;
 }
+
+.animationLeft {
+    animation: moveLeft 1s infinite;
+    transform: scaleX(-1); /* Flip the image horizontally */
+}
+@keyframes moveLeft {
+    0% {
+        transform: scaleX(-1) translateX(0);
+    }
+    50% {
+        transform: scaleX(-1) translateX(-10px);
+    }
+    100% {
+        transform: scaleX(-1) translateX(0);
+    }
+}

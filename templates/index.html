@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pororo - Predicting Land & House Optimal Price</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/fav.png') }}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex flex-col justify-center mb-96">
     <!-- Header -->
     <div class="flex px-16 py-8 justify-between bg-white fixed top-0 w-full z-10">
         <img src="{{ url_for('static', filename='img/Logo.svg') }}" alt="">
-        <a href="">About Us</a>
+        <a href="/about">About Us</a>
     </div>
 
     <!-- Hero & Prediction -->
