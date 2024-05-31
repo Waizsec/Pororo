@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pororo - Predicting Land & House Optimal Price</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col justify-center mb-96">
+    <!-- Header -->
+    <div class="flex px-16 py-8 justify-between bg-white fixed top-0 w-full z-10">
+        <img src="{{ url_for('static', filename='img/Logo.svg') }}" alt="">
+        <a href="">About Us</a>
+    </div>
+
+    <!-- Hero & Prediction -->
+    <img src="{{ url_for('static', filename='img/background.png') }}" class="px-12 mt-32" alt="">
+    <div class="absolute top-44 text-white px-12">
+        <div class="flex w-full">
+            <div class="px-12 w-2/5 mt-12">
+                <h1 class="font-semibold text-7xl w-full leading-tight">Find Best Prices For Your House</h1>
+                <p class="w-fulltext-sm mt-4">
+                    Discover the best prices for your house with our advanced property and land price prediction tool, ensuring you get the most accurate and up-to-date market value for your home.
+                </p>
+            </div>
+            
+            <!-- prediction box -->
+            <div class="w-3/5 px-12">
+                <form class="w-11/12 mt-16 min-h-60 bg-white rounded-xl p-4">
+                    <div>
+                        <button class="text-black text-lg">
+                            <span class="text-black">|</span> Land
+                        </button>
+                        <button class="text-gray-400 text-lg">
+                            <span class="text-black">|</span> House
+                        </button>
+                    </div>
+                    <div class="mt-6 flex justify-between">
+                        <div class="">
+                            <label for="city" class="block text-md font-medium text-gray-700">City</label>
+                            <select id="city" name="city" class="bg-gray-200 w-44 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
+                                <option value="option1">Canggu</option>
+                                <option value="option2">Option 2</option>
+                                <option value="option3">Option 3</option>
+                            </select>
+                        </div>
+                        <div class="">
+                            <label for="city" class="block text-md font-medium text-gray-700">City</label>
+                            <select id="city" name="city" class="bg-gray-200 w-44 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
+                                <option value="option1">Canggu</option>
+                                <option value="option2">Option 2</option>
+                                <option value="option3">Option 3</option>
+                            </select>
+                        </div>
+                        <div class="">
+                            <label for="city" class="block text-md font-medium text-gray-700">City</label>
+                            <select id="city" name="city" class="bg-gray-200 w-44 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
+                                <option value="option1">Canggu</option>
+                                <option value="option2">Option 2</option>
+                                <option value="option3">Option 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex justify-end mt-6">
+                        <button class="w-28 h-10 rounded-md bg-orange-400 text-sm">
+                            Predict
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- Result -->
+        <div class="h-12 mt-48 w-full text-black px-8 flex justify-between">
+            <div class="min-h-52 w-3/5">
+                <div class="text-4xl font-semibold">Result Interpretation</div>
+                <div class="text-md mt-4 mr-12 text-gray-500">
+                    Our advanced land price prediction model estimates that the land at 123 Maple Street, Springfield, is valued at approximately $150,000. This valuation considers recent sales data of nearby properties, which average between $145,000 and $155,000, and the specific sales of adjacent properties.
+                </div>
+                <button class="w-48 h-10 rounded-md bg-orange-400 text-sm mt-4 text-white">
+                    Create New Prediction
+                </button>
+            </div>
+            <div class="min-h-52 w-2/5 bg-gray-100 rounded-xl flex p-8 justify-between">
+                <div class="w-1/2 ml-10">
+                    <h1 class="text-blue-500 text-3xl">2.240.000</h1>
+                    <p class="text-gray-400 text-sm">Recomended Price</p>
+                    <h1 class="text-blue-500 mt-4 text-3xl">1.980.000</h1>
+                    <p class="text-gray-400 text-sm">Lowest Price</p>
+                </div>
+                <div class="w-1/2 ml-4">
+                    <h1 class="text-blue-500 text-3xl">97%</h1>
+                    <p class="text-gray-400 text-sm">Chances</p>
+                    <h1 class="text-blue-500 mt-4 text-3xl">6 Months</h1>
+                    <p class="text-gray-400 text-sm">Time To Sell</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
