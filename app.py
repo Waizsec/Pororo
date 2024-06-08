@@ -4,13 +4,15 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route('/')
 def index():
-    return render_template('index.html')
+    # prediction = request.args.get('prediction', 'ini kalo isi')
+    prediction = request.args.get('prediction')
+    return render_template('index.html', prediction=prediction)
 
 
 @app.route("/about")
-def ngram():
+def about():
     return render_template('about.html')
 
 
