@@ -7,6 +7,32 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/fav.png') }}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const daerah = {{ daerah | tojson }};
+            const kabupatenSelect = document.getElementById('kabupaten');
+            const kecamatanSelect = document.getElementById('kecamatan');
+    
+            kabupatenSelect.addEventListener('change', function() {
+                const selectedKabupaten = this.value;
+    
+                // Clear previous options in kecamatanSelect
+                kecamatanSelect.innerHTML = '<option value="">Select region</option>';
+    
+                if (selectedKabupaten && daerah[selectedKabupaten]) {
+                    // Populate kecamatanSelect with new options
+                    daerah[selectedKabupaten].forEach(function(kecamatan) {
+                        const option = document.createElement('option');
+                        option.value = kecamatan;
+                        option.textContent = kecamatan;
+                        kecamatanSelect.appendChild(option);
+                    });
+                }
+            });
+        });
+    </script>
+    
+    
 </head>
 <body class="flex flex-col justify-center mb-12">
     <!-- Header -->
@@ -22,7 +48,7 @@
     <div class="absolute top-44 text-white px-12">
         {% if not prediction %}
         <div class="flex w-full">
-            <div class="px-12 w-2/5 mt-12">
+            <div class="px-12 w-2/5 ">
                 <h1 class="font-semibold text-7xl w-full leading-tight">Find Best Prices For Your House</h1>
                 <p class="w-full text-sm mt-4">
                     Discover the best prices for your house with our advanced property and land price prediction tool, ensuring you get the most accurate and up-to-date market value for your home.
@@ -31,28 +57,72 @@
             
             <!-- prediction box -->
             <div class="w-3/5 px-12">
-                <div class="w-11/12 mt-16 min-h-60 bg-white rounded-xl p-4">
-                    <div>
-                        <button class="text-gray-400  text-lg">
-                            <span class="text-black">|</span> Land
-                        </button>
-                        <button class="text-black text-lg">
-                            <span class="text-black">|</span> Properties
-                        </button>
+                <div class="w-full min-h-60 bg-white rounded-xl p-4">
+                    <div class="flex">
+                        <form method="get" action="/" class="{{ 'text-black' if status == 'land' else 'text-gray-400' }} mr-2 text-lg">
+                            <span class="text-black">|</span> 
+                            <input type="submit" name="predict" value="Land">
+                        </form>
+                        <form method="get" action="/" class="{{ 'text-black' if status == 'properties' else 'text-gray-400' }} text-lg">
+                            <span class="text-black">|</span>  
+                            <input type="submit" name="predict" value="Properties">
+                        </form>
                     </div>
+                    
+                      if status land
+                       {% if status == 'land' %}
+                      <form action="/" method="post" class="mt-6 w-full">     
+                        <div class="flex justify-between w-full">
+                            <div class="">
+                                <!-- Kabupate & Kecamatan -->
+                                <div class="">
+                                    <label for="kabupaten" class="block text-md font-medium mt-2 text-gray-700">Regency</label>
+                                    <select id="kabupaten" name="kabupaten" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
+                                        <option value="">Select the regency</option>
+                                        {% for kabupaten, kecamatans in daerah.items() %}
+                                            <option value="{{ kabupaten }}">{{ kabupaten }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="">
+                                    <label for="kecamatan" class="block text-md font-medium mt-2 text-gray-700">Region</label>
+                                    <select id="kecamatan" name="kecamatan" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
+                                        <option value="">Select region</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="">
+                                    <label for="luas_tanah" class="block text-md font-medium mt-2 text-gray-700">Area of Surface</label>
+                                    <input for="luas_tanah" name="luas_tanah" class="outline-none bg-gray-200 text-black rounded-md font-medium w-80 h-12 mt-2 px-2" id="luas_tanah" type="number" placeholder="In M^2" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-end mt-6 w-full">
+                            <input type="text" name="tipe" value="land">
+                            <input  class="w-28 h-10 rounded-md bg-orange-400 text-sm hover:w-32 duration-700 ease-in-out" type="submit" value="Predict">
+                                Predict
+                            </input>
+                        </div>
+                    </form>
+                    {%  endif %}
+
+
+                    <!-- if status properties -->
+                     {% if status == 'properties' %}
                     <form action="/" method="post" class="mt-6 w-full">     
                         <div class="flex justify-between w-full">
                             <div class="">
                                 <div class="">
-                                    <label for="luas_bangunan" class="block text-md font-medium text-gray-700">Area of Building</label>
-                                    <input for="luas_bangunan" name="luas_bangunan" class="outline-none bg-gray-200 text-black rounded-md font-medium w-80 h-12 mt-2 px-2" id="luas_bangunan" type="text" placeholder="Type the area here...">
+                                    <label for="luas_bangunan" class="block text-md font-medium mt-2 text-gray-700">Area of Building</label>
+                                    <input for="luas_bangunan" name="luas_bangunan" class="outline-none bg-gray-200 text-black rounded-md font-medium w-80 h-12 mt-2 px-2" id="luas_bangunan" type="number" placeholder="In M^2" required>
                                 </div>
                                 <div class="">
-                                    <label for="luas_tanah" class="block text-md font-medium text-gray-700">Area of Surface</label>
-                                    <input for="luas_tanah" name="luas_tanah" class="outline-none bg-gray-200 text-black rounded-md font-medium w-80 h-12 mt-2 px-2" id="luas_tanah" type="text" placeholder="Type the area here...">
+                                    <label for="luas_tanah" class="block text-md font-medium mt-2 text-gray-700">Area of Surface</label>
+                                    <input for="luas_tanah" name="luas_tanah" class="outline-none bg-gray-200 text-black rounded-md font-medium w-80 h-12 mt-2 px-2" id="luas_tanah" type="number" placeholder="In M^2" required>
                                 </div>
                                 <div class="">
-                                    <label for="tipe" class="block text-md font-medium text-gray-700">Property Type</label>
+                                    <label for="tipe" class="block text-md font-medium mt-2 text-gray-700">Property Type</label>
                                     <select id="tipe" name="tipe" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
                                         <option value="">Select Property Type</option>
                                         <option value="Rumah">Rumah</option>
@@ -60,7 +130,7 @@
                                     </select>
                                 </div>
                                 <div class="">
-                                    <label for="kamar_tidur" class="block text-md font-medium text-gray-700">Bedrooms</label>
+                                    <label for="kamar_tidur" class="block text-md font-medium mt-2 text-gray-700">Bedrooms</label>
                                     <select id="kamar_tidur" name="kamar_tidur" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
                                         <option value="">Select the number of bedrooms</option>
                                         <option value="1">1</option>
@@ -79,7 +149,7 @@
                             </div>
                             <div class="">
                                 <div class="">
-                                    <label for="kamar_mandi" class="block text-md font-medium text-gray-700">Bathroom</label>
+                                    <label for="kamar_mandi" class="block text-md font-medium mt-2 text-gray-700">Bathroom</label>
                                     <select id="kamar_mandi" name="kamar_mandi" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
                                         <option value="">Select the number of bathrooms</option>
                                         <option value="1">1</option>
@@ -96,7 +166,7 @@
                                     </select>
                                 </div>
                                 <div class="">
-                                    <label for="lantai" class="block text-md font-medium text-gray-700">Floor Levels</label>
+                                    <label for="lantai" class="block text-md font-medium mt-2 text-gray-700">Floor Levels</label>
                                     <select id="lantai" name="lantai" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
                                         <option value="">Select the number of floor levels</option>
                                         <option value="1">1</option>
@@ -105,38 +175,36 @@
                                         <option value="4">4</option>
                                     </select>
                                 </div>
+
+                                <!-- Kabupate & Kecamatan -->
                                 <div class="">
-                                    <label for="kabupaten" class="block text-md font-medium text-gray-700">Regency</label>
-                                    <select name="kabupaten" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
+                                    <label for="kabupaten" class="block text-md font-medium mt-2 text-gray-700">Regency</label>
+                                    <select id="kabupaten" name="kabupaten" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
                                         <option value="">Select the regency</option>
-                                        <option value="Bangli">Bangli</option>
-                                        <option value="Buleleng">Buleleng</option>
-                                        <option value="Denpasar">Denpasar</option>
-                                        <option value="Gianyar">Gianyar</option>
-                                        <option value="Karangasem">Karangasem</option>
-                                        <option value="Klungkung">Klungkung</option>
-                                        <option value="Tabanan">Tabanan</option>
-                                        <option class="disabled" disabled value="Negara">Negara</option>
+                                        {% for kabupaten, kecamatans in daerah.items() %}
+                                            <option value="{{ kabupaten }}">{{ kabupaten }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="">
-                                    <label for="kecamatan" class="block text-md font-medium text-gray-700">Region</label>
+                                    <label for="kecamatan" class="block text-md font-medium mt-2 text-gray-700">Region</label>
                                     <select id="kecamatan" name="kecamatan" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
                                         <option value="">Select region</option>
-                                        <option value="Abianbase">Abianbase</option>
-                                        <option value="Abiansemal">Abiansemal</option>
-                                        <option value="Angantaka">Angantaka</option>
-                                        <option value="Antapan">Antapan</option>
                                     </select>
                                 </div>
+                                
                             </div>
                         </div>
                         <div class="flex justify-end mt-6 w-full">
-                            <button class="w-28 h-10 rounded-md bg-orange-400 text-sm hover:w-32 duration-700 ease-in-out" type="submit" value="Predict">
+                            <input type="text" name="tipe" value="pro">
+                            <input  class="w-28 h-10 rounded-md bg-orange-400 text-sm hover:w-32 duration-700 ease-in-out" type="submit" value="Predict">
                                 Predict
-                            </button>
+                            </input>
                         </div>
                     </form>
+                    {% endif %}
+
+                    
                 </div>
             </div>
         </div>
@@ -144,31 +212,21 @@
     </div>
         <!-- Result -->
         {% if prediction %}
-            <div class="h-12 mt-48 w-full text-black px-20 flex justify-between">
+            <form class="h-12 mt-48 w-full text-black px-20 flex justify-between">
                 <div class="min-h-52 w-3/5">
                     <div class="text-4xl font-semibold">Result Interpretation</div>
-                    <div class="text-md mt-4 mr-12 text-gray-500">
-                        Our advanced land price prediction model estimates that the land at 123 Maple Street, Springfield, is valued at approximately {{ prediction['estimated_value'] }}. This valuation considers recent sales data of nearby properties, which average between {{ prediction['avg_nearby_low'] }} and {{ prediction['avg_nearby_high'] }}, and the specific sales of adjacent properties.
+                    <div class="text-md my-6 mr-12 text-gray-500">
+                        {{ interpretation }}
                     </div>
-                    <button class="w-48 h-10 rounded-md bg-orange-400 text-sm mt-4 text-white">
+                    <a href="/" class="px-8 py-3 rounded-md bg-orange-400 text-sm mt-8 text-white">
                         Create New Prediction
-                    </button>
+                    </a>
                 </div>
-                <div class="min-h-52 w-2/5 bg-gray-100 rounded-xl flex p-8 justify-between">
-                    <div class="w-1/2 ml-10">
-                        <h1 class="text-blue-500 text-3xl">{{ prediction }}</h1>
-                        <p class="text-gray-400 text-sm">Recommended Price</p>
-                        <h1 class="text-blue-500 mt-4 text-3xl">XXX</h1>
-                        <p class="text-gray-400 text-sm">Lowest Price</p>
-                    </div>
-                    <div class="w-1/2 ml-4">
-                        <h1 class="text-blue-500 text-3xl">XXX</h1>
-                        <p class="text-gray-400 text-sm">Chances</p>
-                        <h1 class="text-blue-500 mt-4 text-3xl">XXX</h1>
-                        <p class="text-gray-400 text-sm">Time To Sell</p>
-                    </div>
+                <div class="min-h-52 w-2/5 bg-gray-100 rounded-xl flex flex-col p-8 justify-center items-center">
+                        <h1 class="text-blue-500 text-4xl">{{ prediction }}</h1>
+                        <p class="text-gray-400 text-md">Recommended Price</p>
                 </div>
-            </div>
+            </form>
         {% endif %}
     
 </body>
