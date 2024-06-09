@@ -33,79 +33,143 @@
             <div class="w-3/5 px-12">
                 <div class="w-11/12 mt-16 min-h-60 bg-white rounded-xl p-4">
                     <div>
-                        <button class="text-black text-lg">
+                        <button class="text-gray-400  text-lg">
                             <span class="text-black">|</span> Land
                         </button>
-                        <button class="text-gray-400 text-lg">
+                        <button class="text-black text-lg">
                             <span class="text-black">|</span> Properties
                         </button>
                     </div>
-                    <form method="post" class="mt-6 flex justify-between">
-                        <div class="">
-                            <label for="city" class="block text-md font-medium text-gray-700">City</label>
-                            <select id="city" name="city" class="bg-gray-200 w-44 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
-                                <option value="option1">Canggu</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
-                            </select>
+                    <form action="/" method="post" class="mt-6 w-full">     
+                        <div class="flex justify-between w-full">
+                            <div class="">
+                                <div class="">
+                                    <label for="luas_bangunan" class="block text-md font-medium text-gray-700">Area of Building</label>
+                                    <input for="luas_bangunan" name="luas_bangunan" class="outline-none bg-gray-200 text-black rounded-md font-medium w-80 h-12 mt-2 px-2" id="luas_bangunan" type="text" placeholder="Type the area here...">
+                                </div>
+                                <div class="">
+                                    <label for="luas_tanah" class="block text-md font-medium text-gray-700">Area of Surface</label>
+                                    <input for="luas_tanah" name="luas_tanah" class="outline-none bg-gray-200 text-black rounded-md font-medium w-80 h-12 mt-2 px-2" id="luas_tanah" type="text" placeholder="Type the area here...">
+                                </div>
+                                <div class="">
+                                    <label for="tipe" class="block text-md font-medium text-gray-700">Property Type</label>
+                                    <select id="tipe" name="tipe" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
+                                        <option value="">Select Property Type</option>
+                                        <option value="Rumah">Rumah</option>
+                                        <option value="Villa">Villa</option>
+                                    </select>
+                                </div>
+                                <div class="">
+                                    <label for="kamar_tidur" class="block text-md font-medium text-gray-700">Bedrooms</label>
+                                    <select id="kamar_tidur" name="kamar_tidur" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
+                                        <option value="">Select the number of bedrooms</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value=">10">Lebih dari 10</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="">
+                                    <label for="kamar_mandi" class="block text-md font-medium text-gray-700">Bathroom</label>
+                                    <select id="kamar_mandi" name="kamar_mandi" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
+                                        <option value="">Select the number of bathrooms</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value=">10">Lebih dari 10</option>
+                                    </select>
+                                </div>
+                                <div class="">
+                                    <label for="lantai" class="block text-md font-medium text-gray-700">Floor Levels</label>
+                                    <select id="lantai" name="lantai" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
+                                        <option value="">Select the number of floor levels</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </div>
+                                <div class="">
+                                    <label for="kabupaten" class="block text-md font-medium text-gray-700">Regency</label>
+                                    <select name="kabupaten" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
+                                        <option value="">Select the regency</option>
+                                        <option value="Bangli">Bangli</option>
+                                        <option value="Buleleng">Buleleng</option>
+                                        <option value="Denpasar">Denpasar</option>
+                                        <option value="Gianyar">Gianyar</option>
+                                        <option value="Karangasem">Karangasem</option>
+                                        <option value="Klungkung">Klungkung</option>
+                                        <option value="Tabanan">Tabanan</option>
+                                        <option class="disabled" disabled value="Negara">Negara</option>
+                                    </select>
+                                </div>
+                                <div class="">
+                                    <label for="kecamatan" class="block text-md font-medium text-gray-700">Region</label>
+                                    <select id="kecamatan" name="kecamatan" class="bg-gray-200 w-80 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
+                                        <option value="">Select region</option>
+                                        <option value="Abianbase">Abianbase</option>
+                                        <option value="Abiansemal">Abiansemal</option>
+                                        <option value="Angantaka">Angantaka</option>
+                                        <option value="Antapan">Antapan</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="">
-                            <label for="city" class="block text-md font-medium text-gray-700">City</label>
-                            <select id="city" name="city" class="bg-gray-200 w-44 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
-                                <option value="option1">Canggu</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
-                            </select>
-                        </div>
-                        <div class="">
-                            <label for="city" class="block text-md font-medium text-gray-700">City</label>
-                            <select id="city" name="city" class="bg-gray-200 w-44 h-12 outline-none text-black mt-2 px-2 font-medium rounded-md">
-                                <option value="option1">Canggu</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
-                            </select>
+                        <div class="flex justify-end mt-6 w-full">
+                            <button class="w-28 h-10 rounded-md bg-orange-400 text-sm hover:w-32 duration-700 ease-in-out" type="submit" value="Predict">
+                                Predict
+                            </button>
                         </div>
                     </form>
-                    <div class="flex justify-end mt-6">
-                        <button class="w-28 h-10 rounded-md bg-orange-400 text-sm hover:w-32 duration-700 ease-in-out" type="submit">
-                            Predict
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
         {% endif %}
-
-       
     </div>
         <!-- Result -->
-        <!-- {% if prediction %} -->
-        <div class="h-12 mt-48 w-full text-black px-20 flex justify-between">
-            <div class="min-h-52 w-3/5">
-                <div class="text-4xl font-semibold">Result Interpretation</div>
-                <div class="text-md mt-4 mr-12 text-gray-500">
-                    Our advanced land price prediction model estimates that the land at 123 Maple Street, Springfield, is valued at approximately $150,000. This valuation considers recent sales data of nearby properties, which average between $145,000 and $155,000, and the specific sales of adjacent properties.
+        {% if prediction %}
+            <div class="h-12 mt-48 w-full text-black px-20 flex justify-between">
+                <div class="min-h-52 w-3/5">
+                    <div class="text-4xl font-semibold">Result Interpretation</div>
+                    <div class="text-md mt-4 mr-12 text-gray-500">
+                        Our advanced land price prediction model estimates that the land at 123 Maple Street, Springfield, is valued at approximately {{ prediction['estimated_value'] }}. This valuation considers recent sales data of nearby properties, which average between {{ prediction['avg_nearby_low'] }} and {{ prediction['avg_nearby_high'] }}, and the specific sales of adjacent properties.
+                    </div>
+                    <button class="w-48 h-10 rounded-md bg-orange-400 text-sm mt-4 text-white">
+                        Create New Prediction
+                    </button>
                 </div>
-                <button class="w-48 h-10 rounded-md bg-orange-400 text-sm mt-4 text-white">
-                    Create New Prediction
-                </button>
+                <div class="min-h-52 w-2/5 bg-gray-100 rounded-xl flex p-8 justify-between">
+                    <div class="w-1/2 ml-10">
+                        <h1 class="text-blue-500 text-3xl">{{ prediction }}</h1>
+                        <p class="text-gray-400 text-sm">Recommended Price</p>
+                        <h1 class="text-blue-500 mt-4 text-3xl">XXX</h1>
+                        <p class="text-gray-400 text-sm">Lowest Price</p>
+                    </div>
+                    <div class="w-1/2 ml-4">
+                        <h1 class="text-blue-500 text-3xl">XXX</h1>
+                        <p class="text-gray-400 text-sm">Chances</p>
+                        <h1 class="text-blue-500 mt-4 text-3xl">XXX</h1>
+                        <p class="text-gray-400 text-sm">Time To Sell</p>
+                    </div>
+                </div>
             </div>
-            <div class="min-h-52 w-2/5 bg-gray-100 rounded-xl flex p-8 justify-between">
-                <div class="w-1/2 ml-10">
-                    <h1 class="text-blue-500 text-3xl">2.240.000</h1>
-                    <p class="text-gray-400 text-sm">Recommended Price</p>
-                    <h1 class="text-blue-500 mt-4 text-3xl">1.980.000</h1>
-                    <p class="text-gray-400 text-sm">Lowest Price</p>
-                </div>
-                <div class="w-1/2 ml-4">
-                    <h1 class="text-blue-500 text-3xl">97%</h1>
-                    <p class="text-gray-400 text-sm">Chances</p>
-                    <h1 class="text-blue-500 mt-4 text-3xl">6 Months</h1>
-                    <p class="text-gray-400 text-sm">Time To Sell</p>
-                </div>
-            </div>
-        </div>
-        <!-- {% endif %} -->
+        {% endif %}
     
 </body>
 </html>
